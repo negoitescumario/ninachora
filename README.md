@@ -3,23 +3,22 @@
 `ninachora` is a simple graphical terminal client for drawing pixel-art written in Lua.
 Inspired by [pxltrm](https://github.com/dylanaraps/pxltrm).
 
-![example SVG](./example.svg)
-
-<sup>SVG image created with ninachora</sup>
-
-![screenshot](./screenshot.jpg)
-
-The same image, opened in ninachora.
+| ![example SVG](./example.svg)    | ![screenshot](./screenshot.jpg)     |
+| ---                              | ---                                 |
+| SVG image created with ninachora | The same image, opened in ninachora |
 
 # Usage
 
 ## Starting
 
-```
-$ ninachora [name]
+```sh
+$ ninachora [name] [x] [y]
 ```
 
-Where '[name]' is the name of the file you want to edit.
+Where:
+
+* `[name]` is the name of your file (without brackets).
+* `x` and `y` are the canvas' size.
 
 ## Controls
 
@@ -30,7 +29,7 @@ Movement uses BNPF keys, as in Emacs.
 * P - Go up
 * F - Go right
 
-The rest is also quite simple.
+The rest is also quite simple:
 
 * I - Insert a pixel
 * O - take Out a pixel
@@ -43,8 +42,9 @@ The rest is also quite simple.
 
 ## Supported formats
 
-As of right now, ninachora supports exporting to SVG and X PixMaps (.xpm).
-Only ninachora files (.nc) can be opened for (re)editing.
+As of right now, `ninachora` supports exporting to SVG and X PixMaps (`.xpm`).
+
+Only `ninachora` files (`.nc`) can be opened for (re)editing. The program will interpret files intelligently, the file extension is optional.
 
 ## Name origin
 
