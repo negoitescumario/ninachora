@@ -22,12 +22,7 @@ Where:
 
 ## Controls
 
-Movement uses BNPF keys, as in Emacs.
-
-* B - Go left
-* N - Go down
-* P - Go up
-* F - Go right
+Movement uses the arrow keys.
 
 The rest is also quite simple:
 

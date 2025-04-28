@@ -30,7 +30,16 @@ SVG = {
 	"cyan",
 	"white"
 }
-
+XPM = {
+   "n", -- negru
+   "r", -- roșu
+   "v", -- verde
+   "g", -- galben
+   "b", -- bleu (albastru)
+   "m", -- magenta/mov
+   "t", -- turcoaz
+   "a", -- alb
+}
 -- mărimea ecranului este minimum x+2, y+4
 SCENE = {60, 20}
 WINDOW = {}
@@ -46,10 +55,10 @@ CURSOR = "@"
 C_XY = {1, 1, 1, 1}
 
 -- Scurtături tastatură
-KEY_LEFT   = 98  -- b
-KEY_DOWN   = 110 -- n
-KEY_UP     = 112 -- p
-KEY_RIGHT  = 102 -- f
+KEY_LEFT   = 68
+KEY_DOWN   = 66
+KEY_UP     = 65
+KEY_RIGHT  = 67
 KEY_IN     = 105 -- i
 KEY_OUT    = 111 -- o
 KEY_PICK   = 99  -- p
@@ -248,9 +257,34 @@ e_buffer = function(format)
 		info = "SVG exported."
 	elseif format == ".xpm" then
 		local f = io.open(filename..format, "w")
-			f:write("Not implemented.")
+		-- Format XPM3
+		f:write("/* XPM */\nstatic char * XFACE[] = {\n")
+		-- X,Y, număr culori, un pixel corespunde unui caracter
+		f:write("\t\""..SCENE[1].." "..SCENE[2].." 8 1\",\n")
+		-- Culorile:
+		f:write("\t\"a c #ffffff\",\n") -- alb
+		f:write("\t\"n c #000000\",\n") -- negru
+		f:write("\t\"r c #ff0000\",\n") -- roșu
+		f:write("\t\"v c #00ff00\",\n") -- verde
+		f:write("\t\"b c #0000ff\",\n") -- bleu (albastru)
+		f:write("\t\"g c #ffff00\",\n") -- galben
+		f:write("\t\"t c #00ffff\",\n") -- turcoaz
+		f:write("\t\"m c #ff00ff\",\n") -- mov/magenta
+		-- Pixeli (caractere)
+		for y=1,#BUFFER do
+			-- start ("...)
+			f:write("\t\"")
+			for x=1,#BUFFER[y] do
+				f:write(XPM[BUFFER[y][x]])
+			end
+			-- final (...",)
+			f:write("\",\n")
+		end
+		-- Închide fișierul
+		f:write("}\n")
 		f:close()
-	end
+		info = "XPM exported."
+	 end
 end
 -- Citește un fișier salvat într-un buffer
 r_buffer = function(file)
